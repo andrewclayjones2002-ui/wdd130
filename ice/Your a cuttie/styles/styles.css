@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap');
+
+:root {
+    --forest-green: #1a2e05;
+    --chaos-pink: #ff007f; 
+    --toxic-yellow: #ccff00;
+}
+
+/* --- THE STROBE ANIMATIONS --- */
+@keyframes strobe {
+    0% { background-color: var(--chaos-pink); }
+    50% { background-color: var(--toxic-yellow); }
+    100% { background-color: white; }
+}
+
+@keyframes propose {
+    0% { transform: translate(-50%, -50%) scale(1); background: var(--chaos-pink); }
+    50% { transform: translate(-50%, -50%) scale(1.1); background: white; }
+    100% { transform: translate(-50%, -50%) scale(1); background: var(--chaos-pink); }
+}
+
+body {
+    background: var(--forest-green);
+    background-image: radial-gradient(var(--chaos-pink) 1px, transparent 0);
+    background-size: 25px 25px;
+    font-family: 'Special Elite', courier;
+    margin: 0;
+}
+
+/* Clicking background triggers strobe */
+#wrapper:active {
+    animation: strobe 0.1s infinite;
+}
+
+#wrapper {
+    max-width: 900px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border: 8px solid var(--forest-green);
+    padding: 20px;
+    transition: background 0.1s;
+    min-height: 90vh;
+    position: relative;
+}
+
+/* --- Navigation (Straight Line) --- */
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    padding: 20px;
+    border-bottom: 2px solid var(--forest-green);
+}
+
+nav li {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+nav li:nth-child(1):active { transform: scale(4); color: white; }
+nav li:nth-child(2):active { letter-spacing: 50px; }
+nav li:nth-child(3):active { transform: translateY(100vh) rotate(360deg); }
+nav li:nth-child(4):active { filter: invert(1); background: black; }
+
+/* --- Main Content --- */
+main {
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    cursor: pointer;
+    font-family: 'Creepster', cursive;
+    font-size: clamp(3rem, 10vw, 5rem);
+}
+
+h1:active + img {
+    filter: grayscale(1) invert(1) contrast(10);
+    transform: scale(1.2) rotate(-5deg);
+}
+
+img {
+    width: 300px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 20px;
+}
+
+/* --- Section Chaos --- */
+section:nth-of-type(1):active {
+    transform: translateX(1500px) rotate(1080deg);
+    opacity: 0;
+    transition: all 0.8s ease-in;
+}
+
+section:nth-of-type(2):active {
+    border-radius: 50%;
+    background: black;
+    color: var(--toxic-yellow);
+    transform: scale(0.5);
+}
+
+section:nth-of-type(3):active {
+    animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(5px, 5px); }
+    50% { transform: translate(-5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+h2 {
+    color: var(--chaos-pink);
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+}
+
+/* --- THE VALENTINE PROPOSAL FOOTER --- */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 5px dashed var(--toxic-yellow);
+    margin-top: 20px;
+    background: black;
+    color: var(--toxic-yellow);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Bee Movie hint still lingers on hover */
+footer:hover::before {
+    content: "Your a cutie, and I have a question...";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--toxic-yellow);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* The Final Proposal on Click */
+footer:active::after {
+    content: "WILL YOU BE MY VALENTINE?";
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Creepster', cursive;
+    font-size: 8vw;
+    color: white;
+    z-index: 9999;
+    animation: propose 0.3s infinite;
+    text-shadow: 10px 10px 0px black;
+}

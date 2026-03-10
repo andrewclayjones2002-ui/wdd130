@@ -1,0 +1,45 @@
+
+:root {
+    --primary-color: black; 
+    --accent-color: #076856;
+    --text-color: #6dacb9;
+    --heading-font: 'Montserrat';
+    --body-font: 'Roboto';
+}
+
+
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    color: var(--text-color);
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+
+h1, h2, h3 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+}
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raft and Oar Co | Home</title>
+    <!-- Importing Google Fonts for the decorative title -->
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Header Grid */
+        header {
+            display: grid;
+            grid-template-columns: 150px auto;
+            background-color: rgba(0, 0, 0, 0.4); 
+            position: absolute; /* Floating over hero */
+            width: 100%;
+            z-index: 10;
+        }
+
+        #logo_link {
+            padding: 10px;
+            justify-self: center;
+            align-self: center;
+        }
+
+        .logo {
+            width: 80px; /* Slightly adjusted for the new logo aspect ratio */
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px; /* Changed from 50% to 5px for a standard logo look */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-right: 50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d9c2a3;
+        }
+
+        /* Hero Grid */
+        #hero {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            height: 80vh;
+        }
+
+        #hero-box {
+            grid-column: 1/4;
+            grid-row: 1/3;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #hero-msg {
+            grid-column: 2/3;
+            grid-row: 1/2;
+            text-align: center;
+            align-self: center;
+            margin-top: 50px;
+        }
+
+        .home-title {
+            font-family: 'Rock Salt', cursive;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        #hero-msg h4 {
+            color: white;
+            font-weight: normal;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .button-box {
+            margin-top: 25px;
+        }
+
+        .book {
+            background-color: #d9c2a3;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 0.8em;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .book:hover {
+            background-color: #6f7364;
+            color: white;
+        }
+
+        /* Main Home Grid */
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            max-width: 1100px;
+            margin: 80px auto;
+            gap: 20px;
+        }
+
+        .card-img {
+            width: 100%;
+            border: 8px solid #d9c2a3;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform .5s;
+        }
+
+        .card-img:hover {
+            transform: scale(1.05);
+        }
+
+        .rivers-card { grid-column: 2/4; text-align: center; }
+        .camping-card { grid-column: 5/7; text-align: center; }
+        .rapids-card { grid-column: 8/10; text-align: center; }
+
+        .icon {
+            width: 30px;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .home-grid h2 {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Bottom Section with Tan Background */
+        .bottom-section {
+            background-color: #dec8ae;
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            margin-top: 50px;
+        }
+
+        #background {
+            display: none; /* Managed by the section background now */
+        }
+
+        .mountains {
+            grid-column: 2/7;
+            grid-row: 1/2;
+            width: 100%;
+            box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .msg {
+            grid-column: 6/10;
+            grid-row: 1/2;
+            background-color: #6c7161;
+            padding: 40px;
+            box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+            color: white;
+            align-self: center;
+            z-index: 2;
+            margin-top: 40px; /* Offset to create the overlap look */
+        }
+
+        .msg h2 {
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+
+        .msg p {
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .join {
+            background-color: #d9c2a3;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Footer Layout */
+        footer {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 0.8em;
+        }
+
+        footer a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .social img {
+            width: 25px;
+            padding: 5px;
+            filter: grayscale(1);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 900px) {
+            header { position: relative; background-color: #6f7364; }
+            #hero { display: block; height: auto; }
+            #hero-msg { padding: 40px 20px; }
+            .home-grid, .bottom-section { display: block; padding: 20px; }
+            .rivers-card, .camping-card, .rapids-card, .mountains, .msg {
+                width: 90%;
+                margin: 20px auto;
+            }
+            .msg { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+   <header>
+    <div id="logo_container">
+        <a id="logo_link" href="index.html">
+            <img src="images/raft-oar-logo.png"  class="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="rivers.html">Rivers</a>
+        <a href="site-plan.html">Site Plan</a>
+        <a href="contactus.html">Contact Us</a>
+    </nav>
+</header>
+
+    <div id="hero">
+        <div id="hero-box">
+            <img id="hero-img" src="images/hero.png" alt="People enjoying white water rafting">
+        </div>
+        <section id="hero-msg">
+            <h1 class="home-title">Have An Adventure</h1>
+            <h4>Make Memories with Raft and Oar Co</h4>
+            <div class="button-box">
+                <a class="book" href="rates.html">Book Now</a>
+            </div>
+        </section>
+    </div>
+
+    <main class="home-grid">
+        <section class="rivers-card">
+            <img class="card-img" src="images/rivers.jpg" alt="river in forest">
+            <img class="icon" src="images/river_icon.png" alt="river icon">
+            <h2>Rivers</h2>
+        </section>
+        <section class="camping-card">
+            <img class="card-img" src="images/camping.jpg" alt="tent in mountains">
+            <img class="icon" src="images/fire_icon.png" alt="fire icon">
+            <h2>Camping</h2>
+        </section>
+        <section class="rapids-card">
+            <img class="card-img" src="images/rapids.jpg" alt="rafting boat">
+            <img class="icon" src="images/oars.png" alt="oars icon">
+            <h2>Rapids</h2>
+        </section>
+    </main>
+
+    <div class="bottom-section">
+        <img class="mountains" src="images/mountains.jpg" alt="Misty mountains">
+        
+        <section class="msg">
+            <h2>More Than Just The Thrill</h2>
+            <p>Enjoy the breathtaking scenery. From valleys, meadows, canyons, and high peaks; it's way more than just the rapids. It's a great way to get away from it all and relax amongst all the beauty of the great outdoors. </p>
+            <a class="join" href="rivers.html">Join Us</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>Raft and Oar Co &copy; 2024 - Your Name</p>
+        <p><a href="site-plan-rafting.html">Site Plan</a></p>
+        <p><a href="contactus.html">Contact Us</a></p>
+        <div class="social">
+            <a href="https://facebook.com" target="_blank">
+                <img src="images/facebook.png" alt="fb icon">
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="images/twitter.png" alt="twitter icon">
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <img src="images/instagram.png" alt="instagram icon">
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
